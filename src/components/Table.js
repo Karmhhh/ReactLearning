@@ -1,6 +1,9 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import CheckIcon from "@mui/icons-material/Check";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 export const Table = (props) => {
   const { columns, rows, setRows } = props;
   const [selectedRows, setSelectedRows] = useState([]);
@@ -8,7 +11,7 @@ export const Table = (props) => {
 
   const handleReset = () => {
     rows.map((row) => (row.completed = false));
-    setRows(current=>[...current])
+    setRows((current) => [...current]);
   };
   useEffect(() => {}, [rows]);
 
@@ -47,34 +50,45 @@ export const Table = (props) => {
           setSelectedRows(selectedRows);
         }}
       />
-      <Button
-        onClick={() => {
-          handleDelete();
-        }}
-        variant="outlined"
-        color="error"
-      >
-        Delete Selected Todos
-      </Button>
-
-      <Button
-        onClick={() => {
-          toggleComplet();
-        }}
-        variant="outlined"
-        color="success"
-      >
-        Toggle Todo
-      </Button>
-      <Button
-        onClick={() => {
-          handleReset();
-        }}
-        variant="outlined"
-        color="primary"
-      >
-        Reset Todos
-      </Button>
+      <Grid container spacing={5} margin={10}>
+        <Grid item lg={4}>
+          {" "}
+          <Button
+            onClick={() => {
+              handleDelete();
+            }}
+            variant="outlined"
+            color="error"
+            endIcon={<DeleteOutlineIcon />}
+          >
+            Delete Selected Todos
+          </Button>
+        </Grid>
+        <Grid item lg={4}>
+          <Button
+            onClick={() => {
+              toggleComplet();
+            }}
+            variant="outlined"
+            color="success"
+            endIcon={<CheckIcon />}
+          >
+            Toggle Todo
+          </Button>
+        </Grid>
+        <Grid item lg={4}>
+          <Button
+            onClick={() => {
+              handleReset();
+            }}
+            variant="outlined"
+            color="primary"
+            endIcon={<RestartAltIcon />}
+          >
+            Reset Todos
+          </Button>
+        </Grid>
+      </Grid>
     </>
   );
 };

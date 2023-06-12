@@ -1,9 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
-import Add from "@mui/icons-material/Add";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import { Table } from "./components/Table";
+
 import {
   Grid,
   FormGroup,
@@ -36,14 +36,13 @@ function App() {
   return (
     <>
       <header style={{ textAlign: "center" }}>
-        <Typography variant="h4" component="h4">
+        <Typography margin={5} variant="h4" component="h4">
           To Do List Using Mui
         </Typography>
       </header>
       <main>
         <Grid container spacing={6}>
           <Grid item lg={3}></Grid>
-
           <Grid item lg={5}>
             <FormGroup>
               <FormControl>
@@ -61,8 +60,10 @@ function App() {
           </Grid>
 
           <Grid item lg={2}>
-            <Button
-              startIcon={<Add />}
+            <Fab
+              size="medium"
+              color="success"
+              aria-label="add"
               onClick={() => {
                 value &&
                   setRows((current) => [
@@ -70,10 +71,9 @@ function App() {
                     { id: rows.length + 1, TodoName: value, completed: false },
                   ]);
               }}
-              variant="outlined"
             >
-              Add To Do{" "}
-            </Button>
+              <AddIcon />
+            </Fab>
           </Grid>
 
           <Grid item lg={2}>
