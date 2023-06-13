@@ -36,7 +36,7 @@ function App() {
   return (
     <>
      <Grid container spacing={3} justifyContent={"center"}>
-        <Grid item lg={12} md={12} sm={12} xs={12}>
+        <Grid item lg={10} md={10} sm={10} xs={12}>
         
           <Typography
             margin={5}
@@ -48,7 +48,7 @@ function App() {
 
             <Grid justifyContent={"center"} container spacing={5}>
 
-              <Grid item lg={6} md={6} sm={6}>
+              <Grid item lg={6} md={6} sm={6} xs={9}>
                 <FormGroup>
                   <FormControl>
                     <TextField
@@ -64,7 +64,7 @@ function App() {
                 </FormGroup>
               </Grid>
 
-              <Grid item lg={1} md={3} sm={1}>
+              <Grid item lg={1} md={1} sm={1} xs={1}>
                 <Fab
                   size="medium"
                   color="success"
