@@ -50,8 +50,8 @@ export const Table = (props) => {
           setSelectedRows(selectedRows);
         }}
       />
-      <Grid container spacing={5} margin={10}>
-        <Grid item lg={4}>
+      <Grid justifyContent={'center'} container spacing={2} marginTop={2}>
+        <Grid  item lg={2} md={4} sm={2}>
           {" "}
           <Button
             onClick={() => {
@@ -61,10 +61,10 @@ export const Table = (props) => {
             color="error"
             endIcon={<DeleteOutlineIcon />}
           >
-            Delete Selected Todos
+            Delete Todos
           </Button>
         </Grid>
-        <Grid item lg={4}>
+        <Grid   item lg={2} md={4} sm={2}>
           <Button
             onClick={() => {
               toggleComplet();
@@ -76,7 +76,7 @@ export const Table = (props) => {
             Toggle Todo
           </Button>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item  lg={2} md={4} sm={2}>
           <Button
             onClick={() => {
               handleReset();

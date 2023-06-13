@@ -35,66 +35,64 @@ function App() {
   const [value, setValue] = useState("");
   return (
     <>
-      <header style={{ textAlign: "center" }}>
-        <Typography margin={5} variant="h4" component="h4">
-          To Do List Using Mui
-        </Typography>
-      </header>
-      <main>
-        <Grid container spacing={6}>
-          <Grid item lg={3}></Grid>
-          <Grid item lg={5}>
-            <FormGroup>
-              <FormControl>
-                <TextField
-                  name="TodosName"
-                  variant="standard"
-                  label="Your To Do"
-                  onChange={(e) => {
-                    setValue(e.target.value);
+     <Grid container spacing={3} justifyContent={"center"}>
+        <Grid item lg={12} md={12} sm={12}>
+        
+          <Typography
+            margin={5}
+            style={{ textAlign: "center" }}
+            variant="h4"
+            component="h4"
+          >
+            To Do List Using Mui
+
+            <Grid justifyContent={"center"} container spacing={5}>
+
+              <Grid item lg={6} md={6} sm={6}>
+                <FormGroup>
+                  <FormControl>
+                    <TextField
+                      name="TodosName"
+                      variant="standard"
+                      label="Your To Do"
+                      onChange={(e) => {
+                        setValue(e.target.value);
+                      }}
+                    ></TextField>
+                    <FormHelperText>Type here your To Do.</FormHelperText>
+                  </FormControl>
+                </FormGroup>
+              </Grid>
+
+              <Grid item lg={1} md={3} sm={1}>
+                <Fab
+                  size="medium"
+                  color="success"
+                  aria-label="add"
+                  onClick={() => {
+                    value &&
+                      setRows((current) => [
+                        ...current,
+                        {
+                          id: rows.length + 1,
+                          TodoName: value,
+                          completed: false,
+                        },
+                      ]);
                   }}
-                ></TextField>
-                <FormHelperText>Type here your To Do.</FormHelperText>
-              </FormControl>
-            </FormGroup>
-          </Grid>
+                >
+                  <AddIcon />
+                </Fab>
+              </Grid>
+            </Grid>
+          </Typography>
 
-          <Grid item lg={2}>
-            <Fab
-              size="medium"
-              color="success"
-              aria-label="add"
-              onClick={() => {
-                value &&
-                  setRows((current) => [
-                    ...current,
-                    { id: rows.length + 1, TodoName: value, completed: false },
-                  ]);
-              }}
-            >
-              <AddIcon />
-            </Fab>
-          </Grid>
-
-          <Grid item lg={2}>
-            {" "}
-          </Grid>
         </Grid>
-
-        <div
-          style={{
-            width: "70%",
-            height: "auto",
-            marginTop: "5%",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
+        <Grid item lg={9} >
           <Table columns={columns} rows={rows} setRows={setRows} />
-        </div>
-      </main>
+        </Grid>
+      </Grid>
+
     </>
   );
 }
