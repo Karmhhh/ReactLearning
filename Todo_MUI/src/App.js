@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Table } from "./components/Table";
-
+import EditIcon from "@mui/icons-material/Edit";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import {
   Grid,
   FormGroup,
@@ -11,9 +16,59 @@ import {
   FormHelperText,
   Typography,
   TextField,
+  Button,
 } from "@mui/material";
 
 function App() {
+  const EditTodo = (props) => {
+    const [open, setOpen] = useState(false);
+    const [valueEdit, setValueEdit] = useState('');
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+    return (
+      <strong>
+        <Fab color="primary" size="small" aria-label="add" onClick={handleClickOpen
+  
+         }>
+          <EditIcon />
+        </Fab>
+        <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Todo '{props.row.TodoName}'</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Name your Todo here.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Todo Name"
+            onChange={(e)=>{
+              setValueEdit(e.target.value)
+            }}
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={()=>{
+            props.row.TodoName = valueEdit;
+            handleClose()
+          }}>Save</Button>
+        </DialogActions>
+      </Dialog>
+       
+      </strong>
+    );
+  };
   const [columns, setColumns] = useState([
     { field: "id", headerName: "ID", minWidth: 20, maxWidth: 100 },
     {
@@ -23,6 +78,14 @@ function App() {
       maxWidth: 300,
     },
     { field: "completed", headerName: "Status", minWidth: 200, maxWidth: 300 },
+
+    {
+      field: "edit",
+      headerName: "Edit",
+      minWidth: 200,
+      maxWidth: 300,
+      renderCell: EditTodo,
+    },
   ]);
   const [rows, setRows] = useState([
     { id: 1, TodoName: "Stydy", completed: false },
@@ -81,8 +144,8 @@ function App() {
                           TodoName: value,
                           completed: false,
                         },
-                      ])
-                    setValue('')
+                      ]);
+                    setValue("");
                   }}
                 >
                   <AddIcon />
