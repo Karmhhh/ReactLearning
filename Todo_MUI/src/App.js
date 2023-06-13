@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Table } from "./components/Table";
@@ -11,14 +11,18 @@ import {
   FormHelperText,
   Typography,
   TextField,
-  Button,
 } from "@mui/material";
 
 function App() {
   const [columns, setColumns] = useState([
-    { field: "id", headerName: "ID", minWidth:20, maxWidth: 100 },
-    { field: "TodoName", headerName: "Todos Name",minWidth: 200, maxWidth: 300 },
-    { field: "completed", headerName: "Status",minWidth: 200, maxWidth: 300 },
+    { field: "id", headerName: "ID", minWidth: 20, maxWidth: 100 },
+    {
+      field: "TodoName",
+      headerName: "Todos Name",
+      minWidth: 200,
+      maxWidth: 300,
+    },
+    { field: "completed", headerName: "Status", minWidth: 200, maxWidth: 300 },
   ]);
   const [rows, setRows] = useState([
     { id: 1, TodoName: "Stydy", completed: false },
@@ -33,11 +37,11 @@ function App() {
   ]);
 
   const [value, setValue] = useState("");
+  useEffect(() => {}, [value]);
   return (
     <>
-     <Grid container spacing={3} justifyContent={"center"}>
+      <Grid container spacing={3} justifyContent={"center"}>
         <Grid item lg={10} md={10} sm={10} xs={12}>
-        
           <Typography
             margin={5}
             style={{ textAlign: "center" }}
@@ -45,9 +49,7 @@ function App() {
             component="h4"
           >
             To Do List Using Mui
-
             <Grid justifyContent={"center"} container spacing={5}>
-
               <Grid item lg={6} md={6} sm={6} xs={7}>
                 <FormGroup>
                   <FormControl>
@@ -55,6 +57,7 @@ function App() {
                       name="TodosName"
                       variant="standard"
                       label="Your To Do"
+                      value={value}
                       onChange={(e) => {
                         setValue(e.target.value);
                       }}
@@ -78,7 +81,8 @@ function App() {
                           TodoName: value,
                           completed: false,
                         },
-                      ]);
+                      ])
+                    setValue('')
                   }}
                 >
                   <AddIcon />
@@ -86,13 +90,12 @@ function App() {
               </Grid>
             </Grid>
           </Typography>
-
         </Grid>
+
         <Grid item lg={9} md={9} sm={9} xs={9}>
           <Table columns={columns} rows={rows} setRows={setRows} />
         </Grid>
       </Grid>
-
     </>
   );
 }
