@@ -7,7 +7,6 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 export const Table = (props) => {
   const { columns, rows, setRows } = props;
   const [selectedRows, setSelectedRows] = useState([]);
-  const [toggleCompleted, setTogCom] = useState(false);
 
   const handleReset = () => {
     rows.map((row) => (row.completed = false));
@@ -36,6 +35,7 @@ export const Table = (props) => {
     <>
       <DataGrid
       autoHeight
+
         rows={rows}
         columns={columns}
         initialState={{
@@ -53,7 +53,7 @@ export const Table = (props) => {
       />
 
       <Grid justifyContent={'center'} container spacing={2} marginTop={2}>
-        <Grid  item lg={3} md={3} sm={4}>
+        <Grid  item    >
           {" "}
           <Button
             onClick={() => {
@@ -66,7 +66,7 @@ export const Table = (props) => {
             Delete Todos
           </Button>
         </Grid>
-        <Grid   item lg={3} md={3} sm={4}>
+        <Grid   item  >
           <Button 
             onClick={() => {
               toggleComplet();
@@ -78,7 +78,7 @@ export const Table = (props) => {
             Toggle Todo
           </Button>
         </Grid>
-        <Grid item  lg={3} md={3} sm={4}>
+        <Grid item   >
           <Button
             onClick={() => {
               handleReset();
