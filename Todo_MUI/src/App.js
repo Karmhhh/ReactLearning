@@ -48,7 +48,7 @@ function App() {
 
             <Grid justifyContent={"center"} container spacing={5}>
 
-              <Grid item lg={6} md={6} sm={6} xs={9}>
+              <Grid item lg={6} md={6} sm={6} xs={7}>
                 <FormGroup>
                   <FormControl>
                     <TextField
