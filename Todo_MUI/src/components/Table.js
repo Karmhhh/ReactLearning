@@ -9,10 +9,9 @@ export const Table = (props) => {
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleReset = () => {
-    rows.map((row) => (row.completed = false));
+    rows.map((row) => (row.completed = "❌"));
     setRows((current) => [...current]);
   };
-  useEffect(() => {}, [rows]);
 
   const handleDelete = () => {
     setRows(rows.filter((row) => !selectedRows.includes(row.id)));
@@ -22,20 +21,20 @@ export const Table = (props) => {
     for (const el of selectedRows) {
       rows.map((row) => {
         row.id == el
-          ? row.completed === false
-            ? (row.completed = true)
-            : (row.completed = false)
+          ? row.completed === '🔴'
+            ? (row.completed = "🟢")
+            : (row.completed = '🔴')
           : setRows((current) => [...current]);
       });
     }
   };
 
+  useEffect(() => {}, [rows]);
   console.log("rows2", rows);
   return (
     <>
       <DataGrid
-      autoHeight
-
+        autoHeight
         rows={rows}
         columns={columns}
         initialState={{
@@ -46,14 +45,15 @@ export const Table = (props) => {
         pageSizeOptions={[5, 10]}
         checkboxSelection
         disableSelectionOnClick
+        
         getRowId={(row) => row.id}
         onRowSelectionModelChange={(selectedRows) => {
           setSelectedRows(selectedRows);
         }}
       />
 
-      <Grid justifyContent={'center'} container spacing={2} marginTop={2}>
-        <Grid  item    >
+      <Grid justifyContent={"center"} container spacing={2} marginTop={2}>
+        <Grid item>
           {" "}
           <Button
             onClick={() => {
@@ -66,8 +66,8 @@ export const Table = (props) => {
             Delete Todos
           </Button>
         </Grid>
-        <Grid   item  >
-          <Button 
+        <Grid item>
+          <Button
             onClick={() => {
               toggleComplet();
             }}
@@ -78,7 +78,7 @@ export const Table = (props) => {
             Toggle Todo
           </Button>
         </Grid>
-        <Grid item   >
+        <Grid item>
           <Button
             onClick={() => {
               handleReset();
@@ -94,7 +94,6 @@ export const Table = (props) => {
     </>
   );
 };
-
 
 // xs, extra-small: 0px
 // sm, small: 600px

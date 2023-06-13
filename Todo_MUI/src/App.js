@@ -4,11 +4,12 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Table } from "./components/Table";
 import EditIcon from "@mui/icons-material/Edit";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import {
   Grid,
   FormGroup,
@@ -20,87 +21,122 @@ import {
 } from "@mui/material";
 
 function App() {
+  const DeleteTodo = (props) => {
+    const handleDelete = () => {
+      alert(props.row.TodoName);
+      setRows(rows.filter((row) => row.id !== props.row.id));
+    };
+    return (
+      <>
+        <Button
+          color="error"
+          size="small"
+          aria-label="add"
+          onClick={handleDelete}
+        >
+          <DeleteOutlineIcon />
+        </Button>
+      </>
+    );
+  };
   const EditTodo = (props) => {
     const [open, setOpen] = useState(false);
-    const [valueEdit, setValueEdit] = useState('');
+    const [valueEdit, setValueEdit] = useState("");
 
     const handleClickOpen = () => {
       setOpen(true);
     };
-  
+
     const handleClose = () => {
       setOpen(false);
     };
+
     return (
       <strong>
-        <Fab color="primary" size="small" aria-label="add" onClick={handleClickOpen
-  
-         }>
+        <Button
+          color="primary"
+          size="small"
+          aria-label="add"
+          onClick={handleClickOpen}
+        >
           <EditIcon />
-        </Fab>
+        </Button>
         <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit Todo '{props.row.TodoName}'</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Name your Todo here.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Todo Name"
-            onChange={(e)=>{
-              setValueEdit(e.target.value)
-            }}
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={()=>{
-            props.row.TodoName = valueEdit;
-            handleClose()
-          }}>Save</Button>
-        </DialogActions>
-      </Dialog>
-       
+          <DialogTitle>Edit Todo '{props.row.TodoName}'</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Name your Todo here.</DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Todo Name"
+              onChange={(e) => {
+                setValueEdit(e.target.value);
+              }}
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button
+              onClick={() => {
+                props.row.TodoName = valueEdit;
+                handleClose();
+              }}
+            >
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
       </strong>
     );
   };
+
   const [columns, setColumns] = useState([
-    { field: "id", headerName: "ID", minWidth: 20, maxWidth: 100 },
+    // { field: "id", headerName: "ID", minWidth: 20 },
     {
       field: "TodoName",
       headerName: "Todos Name",
-      minWidth: 200,
-      maxWidth: 300,
+      flex: 1,
+      align: "left",
     },
-    { field: "completed", headerName: "Status", minWidth: 200, maxWidth: 300 },
+    {
+      field: "completed",
+      headerName: "Status",
+      flex: 1,
+      align: "left",
+    },
 
     {
       field: "edit",
       headerName: "Edit",
-      minWidth: 200,
-      maxWidth: 300,
+      flex: 1,
       renderCell: EditTodo,
     },
+    {
+      field: "delete",
+      headerName: "Delete Todo",
+      flex: 1,
+      renderCell: DeleteTodo,
+    },
   ]);
+
   const [rows, setRows] = useState([
-    { id: 1, TodoName: "Stydy", completed: false },
-    { id: 2, TodoName: "Eat", completed: false },
-    { id: 3, TodoName: "Sleep", completed: false },
-    { id: 4, TodoName: "Drink", completed: false },
-    { id: 5, TodoName: "Walk", completed: false },
-    { id: 6, TodoName: "Hit Gym", completed: false },
-    { id: 7, TodoName: "Go work", completed: false },
-    { id: 8, TodoName: "Dance", completed: false },
-    { id: 9, TodoName: "Talk", completed: false },
+    { id: 1, TodoName: "Study", completed: "🔴" },
+    { id: 2, TodoName: "Eat", completed: "🔴" },
+    { id: 3, TodoName: "Sleep", completed: "🔴" },
+    { id: 4, TodoName: "Drink", completed: "🔴" },
+    { id: 5, TodoName: "Walk", completed: "🔴" },
+    { id: 6, TodoName: "Hit Gym", completed: "🔴" },
+    { id: 7, TodoName: "Go work", completed: "🔴" },
+    { id: 8, TodoName: "Dance", completed: "🔴" },
+    { id: 9, TodoName: "Talk", completed: "🔴" },
   ]);
 
   const [value, setValue] = useState("");
-  useEffect(() => {}, [value]);
+  useEffect(() => {}, []);
   return (
     <>
       <Grid container spacing={3} justifyContent={"center"}>
@@ -140,9 +176,9 @@ function App() {
                       setRows((current) => [
                         ...current,
                         {
-                          id: rows.length + 1,
+                          id: "ID_" + value,
                           TodoName: value,
-                          completed: false,
+                          completed: "🔴",
                         },
                       ]);
                     setValue("");
