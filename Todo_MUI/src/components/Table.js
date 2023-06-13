@@ -51,8 +51,9 @@ export const Table = (props) => {
           setSelectedRows(selectedRows);
         }}
       />
+
       <Grid justifyContent={'center'} container spacing={2} marginTop={2}>
-        <Grid  item lg={3} md={4} sm={4}>
+        <Grid  item lg={3} md={3} sm={4}>
           {" "}
           <Button
             onClick={() => {
@@ -65,7 +66,7 @@ export const Table = (props) => {
             Delete Todos
           </Button>
         </Grid>
-        <Grid   item lg={3} md={4} sm={4}>
+        <Grid   item lg={3} md={3} sm={4}>
           <Button 
             onClick={() => {
               toggleComplet();
@@ -77,7 +78,7 @@ export const Table = (props) => {
             Toggle Todo
           </Button>
         </Grid>
-        <Grid item  lg={3} md={4} sm={4}>
+        <Grid item  lg={3} md={3} sm={4}>
           <Button
             onClick={() => {
               handleReset();
@@ -93,3 +94,10 @@ export const Table = (props) => {
     </>
   );
 };
+
+
+// xs, extra-small: 0px
+// sm, small: 600px
+// md, medium: 900px
+// lg, large: 1200px
+// xl, extra-large: 1536px

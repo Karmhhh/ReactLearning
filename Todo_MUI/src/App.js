@@ -16,9 +16,9 @@ import {
 
 function App() {
   const [columns, setColumns] = useState([
-    { field: "id", headerName: "ID", width: 100 },
-    { field: "TodoName", headerName: "Todos Name", width: 600 },
-    { field: "completed", headerName: "Status", width: 120 },
+    { field: "id", headerName: "ID", minWidth:20, maxWidth: 100 },
+    { field: "TodoName", headerName: "Todos Name",minWidth: 200, maxWidth: 300 },
+    { field: "completed", headerName: "Status",minWidth: 200, maxWidth: 300 },
   ]);
   const [rows, setRows] = useState([
     { id: 1, TodoName: "Stydy", completed: false },
@@ -36,7 +36,7 @@ function App() {
   return (
     <>
      <Grid container spacing={3} justifyContent={"center"}>
-        <Grid item lg={12} md={12} sm={12}>
+        <Grid item lg={12} md={12} sm={12} xs={12}>
         
           <Typography
             margin={5}
@@ -88,7 +88,7 @@ function App() {
           </Typography>
 
         </Grid>
-        <Grid item lg={9}>
+        <Grid item lg={9} md={9} sm={9} xs={9}>
           <Table columns={columns} rows={rows} setRows={setRows} />
         </Grid>
       </Grid>
