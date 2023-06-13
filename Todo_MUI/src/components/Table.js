@@ -35,6 +35,7 @@ export const Table = (props) => {
   return (
     <>
       <DataGrid
+      autoHeight
         rows={rows}
         columns={columns}
         initialState={{
@@ -51,7 +52,7 @@ export const Table = (props) => {
         }}
       />
       <Grid justifyContent={'center'} container spacing={2} marginTop={2}>
-        <Grid  item lg={2} md={4} sm={2}>
+        <Grid  item lg={3} md={4} sm={4}>
           {" "}
           <Button
             onClick={() => {
@@ -64,8 +65,8 @@ export const Table = (props) => {
             Delete Todos
           </Button>
         </Grid>
-        <Grid   item lg={2} md={4} sm={2}>
-          <Button
+        <Grid   item lg={3} md={4} sm={4}>
+          <Button 
             onClick={() => {
               toggleComplet();
             }}
@@ -76,7 +77,7 @@ export const Table = (props) => {
             Toggle Todo
           </Button>
         </Grid>
-        <Grid item  lg={2} md={4} sm={2}>
+        <Grid item  lg={3} md={4} sm={4}>
           <Button
             onClick={() => {
               handleReset();

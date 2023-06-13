@@ -88,7 +88,7 @@ function App() {
           </Typography>
 
         </Grid>
-        <Grid item lg={9} >
+        <Grid item lg={9}>
           <Table columns={columns} rows={rows} setRows={setRows} />
         </Grid>
       </Grid>
