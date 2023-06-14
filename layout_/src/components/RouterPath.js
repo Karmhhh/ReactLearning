@@ -1,5 +1,6 @@
-import { Routes, Route, Link } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
+import OutlinedCard from "./Card";
+import { Grid } from "@mui/material";
 const Home = () => {
   return (
     <>
@@ -14,8 +15,45 @@ const Dashboard = () => {
   return (
     <>
       <h1 className="header"> Clients Dashboard</h1>
-      <h3>Welcome </h3>
-      <p>Lorem ipsum dolor sit amet...</p>
+
+      <Grid container spacing={5} direction="column">
+        <Grid
+          item
+          container
+          spacing={10}
+          justifyContent={"center"}
+          direction={"row"}
+        >
+          <Grid item lg={4}>
+            <OutlinedCard
+              Title="sssss"
+              Description="sss"
+              Text="ssss"
+              Text2="sss"
+              Button="sss"
+            />
+          </Grid>
+          <Grid item lg={4}>
+            <OutlinedCard
+              Title="sssss"
+              Description="sss"
+              Text="ssss"
+              Text2="sss"
+              Button="sss"
+            />
+          </Grid>
+          <Grid item lg={4}>
+            <OutlinedCard
+              Title="sssss"
+              Description="sss"
+              Text="ssss"
+              Text2="sss"
+              Button="sss"
+            />
+          </Grid>
+        </Grid>
+        <Grid item>Table</Grid>
+      </Grid>
     </>
   );
 };
@@ -41,7 +79,7 @@ const Logout = () => {
 
 const RouterPath = () => {
   return (
-    <section >
+    <section>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="dashboard" element={<Dashboard />} />
