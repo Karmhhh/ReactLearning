@@ -1,6 +1,12 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import OutlinedCard from "./Card";
 import { Grid } from "@mui/material";
+import Table from './DataGridMui'
+
+
+
+
 const Home = () => {
   return (
     <>
@@ -38,23 +44,40 @@ const Dashboard = () => {
       Button: "ButtonCard3",
     },
   ];
+  const [columns, setColumns] = useState([
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "TodoName", headerName: "Todos Name", width: 600 },
+    { field: "completed", headerName: "Status", width: 120 },
+  ]);
+  const [rows, setRows] = useState([
+    { id: 1, TodoName: "Stydy", completed: false },
+    { id: 2, TodoName: "Eat", completed: false },
+    { id: 3, TodoName: "Sleep", completed: false },
+    { id: 4, TodoName: "Drink", completed: false },
+    { id: 5, TodoName: "Walk", completed: false },
+    { id: 6, TodoName: "Hit Gym", completed: false },
+    { id: 7, TodoName: "Go work", completed: false },
+    { id: 8, TodoName: "Dance", completed: false },
+    { id: 9, TodoName: "Talk", completed: false },
+  ]);
 
   return (
     <>
       <h1 className="header"> Clients Dashboard</h1>
 
-      <Grid container spacing={5} direction="column">
+      <Grid container item spacing={5} direction="column">
         <Grid
           item
           container
-          spacing={10}
+          spacing={3}
           justifyContent={"center"}
           direction={"row"}
+          
         >
           {cards.map((card) => {
             return (
               <>
-                <Grid item lg={4}>
+                <Grid item  lg={4} md={4} sm={4} xs={9}>
                   <OutlinedCard
                     Subtitle={card.Subtitle}
                     Title={card.Title}
@@ -68,7 +91,9 @@ const Dashboard = () => {
             );
           })}
         </Grid>
-        <Grid item>Table</Grid>
+        <Grid container item>
+        <Table columns={columns} rows={rows} setRows={setRows} />
+        </Grid>
       </Grid>
     </>
   );
