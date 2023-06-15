@@ -12,6 +12,10 @@ body {
      font-size: 10pt;
   
 }
+.styleAppBar{
+
+     background: #ffffff;
+}
 .sidebar {
      background: #ffffff;
      height: 100vh;
