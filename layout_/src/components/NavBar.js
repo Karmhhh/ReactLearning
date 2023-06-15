@@ -31,7 +31,7 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box  sx={{ flexGrow: 0 }} style={{
-             maxWidth:'3rem'
+             maxWidth:'1.5rem'
           }}>
             <Tooltip title="Open settings" >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
