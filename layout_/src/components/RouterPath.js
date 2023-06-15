@@ -12,6 +12,33 @@ const Home = () => {
 };
 
 const Dashboard = () => {
+  const cards = [
+    {
+      Subtitle: "Subtitle",
+      Title: "Title",
+      Description: "Desciption",
+      Text: "Text",
+      Text2: "Text2",
+      Button: "Button",
+    },
+    {
+      Subtitle: "SubtitleCard2",
+      Title: "TitleCard2",
+      Description: "DesciptionCard2",
+      Text: "TextCard2",
+      Text2: "Text2Card2",
+      Button: "ButtonCard2",
+    },
+    {
+      Subtitle: "SubtitleCard3",
+      Title: "TitleCard3",
+      Description: "DesciptionCard3",
+      Text: "TextCard3",
+      Text2: "Text2Card3",
+      Button: "ButtonCard3",
+    },
+  ];
+
   return (
     <>
       <h1 className="header"> Clients Dashboard</h1>
@@ -24,33 +51,22 @@ const Dashboard = () => {
           justifyContent={"center"}
           direction={"row"}
         >
-          <Grid item lg={4}>
-            <OutlinedCard
-              Title="sssss"
-              Description="sss"
-              Text="ssss"
-              Text2="sss"
-              Button="sss"
-            />
-          </Grid>
-          <Grid item lg={4}>
-            <OutlinedCard
-              Title="sssss"
-              Description="sss"
-              Text="ssss"
-              Text2="sss"
-              Button="sss"
-            />
-          </Grid>
-          <Grid item lg={4}>
-            <OutlinedCard
-              Title="sssss"
-              Description="sss"
-              Text="ssss"
-              Text2="sss"
-              Button="sss"
-            />
-          </Grid>
+          {cards.map((card) => {
+            return (
+              <>
+                <Grid item lg={4}>
+                  <OutlinedCard
+                    Subtitle={card.Subtitle}
+                    Title={card.Title}
+                    Description={card.Description}
+                    Text={card.Text}
+                    Text2={card.Text2}
+                    Button={card.Button}
+                  />
+                </Grid>
+              </>
+            );
+          })}
         </Grid>
         <Grid item>Table</Grid>
       </Grid>
