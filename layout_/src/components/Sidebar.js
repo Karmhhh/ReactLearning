@@ -6,24 +6,16 @@ import {
   SubMenu,
   useProSidebar,
 } from "react-pro-sidebar";
-
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-
-import PeopleIcon from "@mui/icons-material/People";
-import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
-import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
-import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
-import TimelineRoundedIcon from "@mui/icons-material/TimelineRounded";
-import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
-import WalletRoundedIcon from "@mui/icons-material/WalletRounded";
-import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
-import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
-import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
-import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
-import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import PeopleIcon from "@mui/icons-material/People";
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+
+
 
 const SidebarMui = () => {
   const renderMenuItems = () => {
@@ -36,6 +28,49 @@ const SidebarMui = () => {
         MenuItems: [
           { to: "dashboard", name: "Clients Dashboard" },
           { to: "clientPresets", name: "Client Presets" },
+          { to: "clientPresets", name: "New Client" },
+        ],
+      },
+   
+      {
+        SubMenuLabel: "Devices",
+        iconSubMenu: () => {
+          return <DeveloperModeIcon />;
+        },
+        MenuItems: [
+          { to: "", name: "Tcp/SMS Commands" },
+          { to: "", name: "Other" },
+          { to: "", name: "Other2" },
+        ],
+      },
+      {
+        SubMenuLabel: "Fuel Rods",
+        iconSubMenu: () => {
+          return <LocalGasStationIcon />;
+        },
+        MenuItems: [{ to: "", name: "Sensors" }],
+      },
+     
+      {
+        SubMenuLabel: "WareHouse",
+        iconSubMenu: () => {
+          return <WarehouseIcon />;
+        },
+        MenuItems: [
+          { to: "", name: "other" },
+          { to: "", name: "other" },
+          { to: "", name: "other" },
+        ],
+      },
+      {
+        SubMenuLabel: "Support",
+        iconSubMenu: () => {
+          return <   HelpOutlineIcon />;
+        },
+        MenuItems: [
+          { to: "", name: "other" },
+          { to: "", name: "other" },
+          { to: "", name: "other" },
         ],
       },
       {
@@ -45,10 +80,11 @@ const SidebarMui = () => {
         },
         MenuItems: [
           { to: "Account", name: "Account" },
+          { to: "Users", name: "Users" },
           { to: "Privacy", name: "Privacy" },
-          { to: "Notification", name: "Notification" },
         ],
       },
+
       {
         Label: "Logout",
         to: "Logout",
@@ -65,6 +101,7 @@ const SidebarMui = () => {
             <>
               {menuOption.MenuItems && (
                 <SubMenu
+                  key={menuOption.SubMenuLabel}
                   label={menuOption.SubMenuLabel}
                   icon={menuOption.iconSubMenu()}
                 >
@@ -72,6 +109,7 @@ const SidebarMui = () => {
                     return (
                       <>
                         <MenuItem
+                          key={menuItem.name}
                           component={<Link to={menuItem.to} className="link" />}
                           // icon={<GridViewRoundedIcon /> }
                         >
@@ -84,6 +122,7 @@ const SidebarMui = () => {
               )}
               {!menuOption.MenuItems && (
                 <MenuItem
+                  key={menuOption.name}
                   component={<Link to={menuOption.to} className="link" />}
                   icon={menuOption.icon()}
                 >
@@ -97,11 +136,10 @@ const SidebarMui = () => {
     );
   };
 
-  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
-    useProSidebar();
+  const { collapseSidebar } = useProSidebar();
   return (
     <>
-      <Sidebar   className="sidebar" >
+      <Sidebar style={{ background: "#004494", height: "100vh" }}>
         <Menu>
           <MenuItem
             className="menu1"

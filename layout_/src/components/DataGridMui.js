@@ -8,8 +8,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 export const Table = (props) => {
   const { columns, rows, setRows } = props;
   const [selectedRows, setSelectedRows] = useState([]);
-  const [toggleCompleted, setTogCom] = useState(false);
-
+  
   const handleReset = () => {
     rows.map((row) => (row.completed = false));
     setRows((current) => [...current]);
@@ -23,7 +22,7 @@ export const Table = (props) => {
   const toggleComplet = () => {
     for (const el of selectedRows) {
       rows.map((row) => {
-        row.id == el
+        return row.id === el
           ? row.completed === false
             ? (row.completed = true)
             : (row.completed = false)
@@ -44,7 +43,7 @@ export const Table = (props) => {
         direction={"column"}
         sx={{ width: "100%" }}
       >
-        <Grid item lg={8}>
+        <Grid item>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -68,12 +67,10 @@ export const Table = (props) => {
           justifyContent={"center"}
           container
           spacing={2}
-          columnSpacing={15}
           direction={"row"}
-          xs={1}
-          sx={{ minWidth: '30vh' }}
+          sx={{ minWidth: "30vh" }}
         >
-          <Grid item lg={4} md={4} xs={4} >
+          <Grid item xl={4} lg={4} md={4} xs={5}>
             {" "}
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
@@ -87,7 +84,7 @@ export const Table = (props) => {
               Delete Todos
             </Button>
           </Grid>
-          <Grid item lg={4} md={4} xs={4} >
+          <Grid item xl={4} lg={4} md={4} xs={5}>
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
               onClick={() => {
@@ -100,7 +97,7 @@ export const Table = (props) => {
               Toggle Todo
             </Button>
           </Grid>
-          <Grid item lg={4} md={4} xs={4} >
+          <Grid item xl={4} lg={4} md={4} xs={5}>
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
               onClick={() => {

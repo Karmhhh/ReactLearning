@@ -42,7 +42,9 @@ const Dashboard = () => {
       Button: "ButtonCard3",
     },
   ];
-  const [columns, setColumns] = useState([
+  const [columns,
+    // setColumns
+  ] = useState([
     { field: "id", headerName: "ID", maxWidth: 100, },
     {
       field: "TodoName",
@@ -80,13 +82,13 @@ const Dashboard = () => {
           item
           container
           spacing={3}
-          columnGap={10}
+          justifyContent={'center'}
+          columnGap={'4rem'}
           direction={"row"}
         >
           {cards.map((card) => {
             return (
-              <>
-                <Grid item  lg={3} md={5} sm={12} xs={12}>
+              <> <Grid item xl={3} lg={3} md={5} sm={12} xs={12}>
                   <OutlinedCard
                     Subtitle={card.Subtitle}
                     Title={card.Title}
@@ -96,6 +98,7 @@ const Dashboard = () => {
                     Button={card.Button}
                   />
                 </Grid>
+               
               </>
             );
           })}
