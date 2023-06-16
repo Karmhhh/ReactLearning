@@ -101,7 +101,7 @@ const SidebarMui = () => {
     useProSidebar();
   return (
     <>
-      <Sidebar className="sidebar" >
+      <Sidebar   className="sidebar" >
         <Menu>
           <MenuItem
             className="menu1"

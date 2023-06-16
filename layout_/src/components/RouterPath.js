@@ -2,11 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import OutlinedCard from "./Card";
 import { Grid } from "@mui/material";
-import Table from './DataGridMui'
+import Table from "./DataGridMui";
 
-
-
-
+import {Box} from "@mui/material";
 const Home = () => {
   return (
     <>
@@ -45,9 +43,14 @@ const Dashboard = () => {
     },
   ];
   const [columns, setColumns] = useState([
-    { field: "id", headerName: "ID", width: 100 },
-    { field: "TodoName", headerName: "Todos Name", width: 600 },
-    { field: "completed", headerName: "Status", width: 120 },
+    { field: "id", headerName: "ID", maxWidth: 100, },
+    {
+      field: "TodoName",
+      headerName: "Todos Name",
+      maxWidth: 600,
+      
+    },
+    { field: "completed", headerName: "Status", maxWidth: 120,},
   ]);
   const [rows, setRows] = useState([
     { id: 1, TodoName: "Stydy", completed: false },
@@ -63,21 +66,27 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1 className="header"> Clients Dashboard</h1>
-
-      <Grid container item spacing={5} direction="column">
+      <Grid
+        item
+        container
+        spacing={3}
+        
+        direction="column"
+      >
+        <Grid item>
+          <h1 className="header"> Clients Dashboard</h1>
+        </Grid>
         <Grid
           item
           container
           spacing={3}
-          justifyContent={"center"}
+          columnGap={10}
           direction={"row"}
-          
         >
           {cards.map((card) => {
             return (
               <>
-                <Grid item  lg={4} md={4} sm={4} xs={9}>
+                <Grid item  lg={3} md={5} sm={12} xs={12}>
                   <OutlinedCard
                     Subtitle={card.Subtitle}
                     Title={card.Title}
@@ -92,7 +101,9 @@ const Dashboard = () => {
           })}
         </Grid>
         <Grid container item>
-        <Table columns={columns} rows={rows} setRows={setRows} />
+        <Box sx={{width:'100%'}} style={{minWidth: '30vh', overflow: 'auto'}}>   <Table columns={columns} rows={rows} setRows={setRows} /></Box>
+        
+       
         </Grid>
       </Grid>
     </>
@@ -102,7 +113,7 @@ const Dashboard = () => {
 const ClientPresets = () => {
   return (
     <>
-      <h1 className="header">ClientPresets</h1>
+      <h1 className="header">Client Presets</h1>
       <h3>title</h3>
       <p>Lorem ipsum dolor sit amet...</p>
     </>

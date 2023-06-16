@@ -13,7 +13,7 @@ const OutlinedCard = (props) => {
     const card=(
   <React.Fragment>
     <CardContent>
-      <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+      <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
        { props.Subtitle}
       </Typography>
       <Typography variant="h5" component="div">
@@ -34,7 +34,7 @@ const OutlinedCard = (props) => {
   </React.Fragment>)
 
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box sx={{ minWidth: 220 , maxWidth: 350 }}>
       <Card variant="outlined">{card}</Card>
     </Box>
   );
