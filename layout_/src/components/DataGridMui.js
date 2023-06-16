@@ -67,10 +67,11 @@ export const Table = (props) => {
           justifyContent={"center"}
           container
           spacing={2}
+          columnSpacing={10}
           direction={"row"}
           sx={{ minWidth: "30vh" }}
         >
-          <Grid item xl={4} lg={4} md={4} xs={5}>
+          <Grid item xl={4} lg={4} md={4} sm={5}  xs={5}>
             {" "}
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
@@ -84,7 +85,7 @@ export const Table = (props) => {
               Delete Todos
             </Button>
           </Grid>
-          <Grid item xl={4} lg={4} md={4} xs={5}>
+          <Grid item xl={4} lg={4} md={4} sm={5}  xs={5}>
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
               onClick={() => {
@@ -97,7 +98,7 @@ export const Table = (props) => {
               Toggle Todo
             </Button>
           </Grid>
-          <Grid item xl={4} lg={4} md={4} xs={5}>
+          <Grid item xl={4} lg={4} md={4} sm={5} xs={5}>
             <Button
               sx={{ minWidth: 50, maxWidth: 300 }}
               onClick={() => {

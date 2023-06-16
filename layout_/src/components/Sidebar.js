@@ -101,7 +101,7 @@ const SidebarMui = () => {
             <>
               {menuOption.MenuItems && (
                 <SubMenu
-                  key={menuOption.SubMenuLabel}
+                  key={menuOption.SubMenuLabel }
                   label={menuOption.SubMenuLabel}
                   icon={menuOption.iconSubMenu()}
                 >

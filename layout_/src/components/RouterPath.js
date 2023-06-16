@@ -88,8 +88,8 @@ const Dashboard = () => {
         >
           {cards.map((card) => {
             return (
-              <> <Grid item xl={3} lg={3} md={5} sm={12} xs={12}>
-                  <OutlinedCard
+               <Grid key={card.Title} item xl={3} lg={3} md={5} sm={12} xs={12} >
+                  <OutlinedCard 
                     Subtitle={card.Subtitle}
                     Title={card.Title}
                     Description={card.Description}
@@ -99,7 +99,6 @@ const Dashboard = () => {
                   />
                 </Grid>
                
-              </>
             );
           })}
         </Grid>
