@@ -1,10 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, createBrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import OutlinedCard from "./Card";
 import { Grid } from "@mui/material";
 import Table from "./DataGridMui";
-
-import {Box} from "@mui/material";
+import Layout from "./Layout";
+import { Box } from "@mui/material";
 const Home = () => {
   return (
     <>
@@ -42,17 +42,17 @@ const Dashboard = () => {
       Button: "ButtonCard3",
     },
   ];
-  const [columns,
+  const [
+    columns,
     // setColumns
   ] = useState([
-    { field: "id", headerName: "ID", maxWidth: 100, },
+    { field: "id", headerName: "ID", maxWidth: 100 },
     {
       field: "TodoName",
       headerName: "Todos Name",
       maxWidth: 600,
-      
     },
-    { field: "completed", headerName: "Status", maxWidth: 120,},
+    { field: "completed", headerName: "Status", maxWidth: 120 },
   ]);
   const [rows, setRows] = useState([
     { id: 1, TodoName: "Stydy", completed: false },
@@ -68,13 +68,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid
-        item
-        container
-        spacing={3}
-        
-        direction="column"
-      >
+      <Grid item container spacing={3} direction="column">
         <Grid item>
           <h1 className="header"> Clients Dashboard</h1>
         </Grid>
@@ -82,30 +76,33 @@ const Dashboard = () => {
           item
           container
           spacing={3}
-          justifyContent={'center'}
-          columnGap={'4rem'}
+          justifyContent={"center"}
+          columnGap={"4rem"}
           direction={"row"}
         >
           {cards.map((card) => {
             return (
-               <Grid key={card.Title} item xl={3} lg={3} md={5} sm={12} xs={12} >
-                  <OutlinedCard 
-                    Subtitle={card.Subtitle}
-                    Title={card.Title}
-                    Description={card.Description}
-                    Text={card.Text}
-                    Text2={card.Text2}
-                    Button={card.Button}
-                  />
-                </Grid>
-               
+              <Grid key={card.Title} item xl={3} lg={3} md={5} sm={12} xs={12}>
+                <OutlinedCard
+                  Subtitle={card.Subtitle}
+                  Title={card.Title}
+                  Description={card.Description}
+                  Text={card.Text}
+                  Text2={card.Text2}
+                  Button={card.Button}
+                />
+              </Grid>
             );
           })}
         </Grid>
         <Grid container item>
-        <Box sx={{width:'100%'}} style={{minWidth: '30vh', overflow: 'auto'}}>   <Table columns={columns} rows={rows} setRows={setRows} /></Box>
-        
-       
+          <Box
+            sx={{ width: "100%" }}
+            style={{ minWidth: "30vh", overflow: "auto" }}
+          >
+            {" "}
+            <Table columns={columns} rows={rows} setRows={setRows} />
+          </Box>
         </Grid>
       </Grid>
     </>
@@ -130,6 +127,18 @@ const Logout = () => {
     </>
   );
 };
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "clientPresets", element: <ClientPresets /> },
+      { path: "logout", element: <Logout /> }
+    ],
+  },
+]);
 
 const RouterPath = () => {
   return (
