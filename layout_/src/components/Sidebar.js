@@ -10,12 +10,11 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import PeopleIcon from "@mui/icons-material/People";
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import WarehouseIcon from '@mui/icons-material/Warehouse';
-
-
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
+import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import WarehouseIcon from "@mui/icons-material/Warehouse";
+import { Typography} from "@mui/material";
 
 const SidebarMui = () => {
   const renderMenuItems = () => {
@@ -31,7 +30,7 @@ const SidebarMui = () => {
           { to: "clientPresets", name: "New Client" },
         ],
       },
-   
+
       {
         SubMenuLabel: "Devices",
         iconSubMenu: () => {
@@ -39,8 +38,14 @@ const SidebarMui = () => {
         },
         MenuItems: [
           { to: "", name: "Tcp/SMS Commands" },
-          { to: "", name: "Other" },
-          { to: "", name: "Other2" },
+          { to: "", name: "Unit Management" },
+          { to: "", name: "Search Device" },
+          { to: "", name: "New Device" },
+          { to: "", name: "Firmware" },
+          { to: "", name: "Calibration Library" },
+          { to: "", name: "Raw Data Logs" },
+          { to: "", name: "Import Devices" },
+          { to: "", name: "Route Calculation Preset" },
         ],
       },
       {
@@ -50,27 +55,28 @@ const SidebarMui = () => {
         },
         MenuItems: [{ to: "", name: "Sensors" }],
       },
-     
+
       {
         SubMenuLabel: "WareHouse",
         iconSubMenu: () => {
           return <WarehouseIcon />;
         },
         MenuItems: [
-          { to: "", name: "other" },
-          { to: "", name: "other" },
-          { to: "", name: "other" },
+          { to: "", name: "My Warehouse" },
+       
         ],
       },
       {
         SubMenuLabel: "Support",
         iconSubMenu: () => {
-          return <   HelpOutlineIcon />;
+          return <HelpOutlineIcon />;
         },
         MenuItems: [
-          { to: "", name: "other" },
-          { to: "", name: "other" },
-          { to: "", name: "other" },
+          { to: "", name: "Support Calendar" },
+          { to: "", name: "Driver Behavior Dash" },
+          { to: "", name: "Error Registry" },
+          { to: "", name: "Tachograph Status" },
+          { to: "", name: "Device Orders" },
         ],
       },
       {
@@ -96,40 +102,43 @@ const SidebarMui = () => {
 
     return (
       <>
-        {MenuOptions.map((menuOption) => {
+        {MenuOptions.map((menuOption, index) => {
           return (
             <>
               {menuOption.MenuItems && (
-                <SubMenu
-                  key={menuOption.SubMenuLabel }
-                  label={menuOption.SubMenuLabel}
-                  icon={menuOption.iconSubMenu()}
-                >
-                  {menuOption.MenuItems.map((menuItem) => {
-                    return (
-                      <>
+                <Typography sx={{ "&:hover": { color: "black", background:'white' } }}>
+                  <SubMenu
+                    key={index}
+                    label={menuOption.SubMenuLabel}
+                    icon={menuOption.iconSubMenu()}
+                  >
+                    {menuOption.MenuItems.map((menuItem, index2) => {
+                      return (
+                        <Typography sx={{   color: "black" }}>
                         <MenuItem
-                         
-                          key={menuItem.name}
+                          key={index2}
                           component={<Link to={menuItem.to} className="link" />}
-                          // icon={<GridViewRoundedIcon /> }
+                    
                         >
                           {menuItem.name}
                         </MenuItem>
-                      </>
-                    );
-                  })}
-                </SubMenu>
+                        </Typography>
+                      );
+                    })}
+                  </SubMenu>
+                </Typography>
               )}
+
               {!menuOption.MenuItems && (
-                <MenuItem
-               
-                  key={menuOption.name}
-                  component={<Link to={menuOption.to} className="link" />}
-                  icon={menuOption.icon()}
-                >
-                  {menuOption.Label}
-                </MenuItem>
+                <Typography  sx={{"&:hover": { color: "black" } }}>
+                  <MenuItem
+                    key={index}
+                    component={<Link to={menuOption.to} className="link" />}
+                    icon={menuOption.icon()}
+                  >
+                    {menuOption.Label}
+                  </MenuItem>
+                </Typography>
               )}
             </>
           );
@@ -141,8 +150,9 @@ const SidebarMui = () => {
   const { collapseSidebar } = useProSidebar();
   return (
     <>
-      <Sidebar style={{ background: "#004494", height: "100vh" }}>
+      <Sidebar className="sidebar" style={{ color: "white", height: "95vh" }}>
         <Menu>
+        <Typography sx={{ "&:hover": { color: "black" } }}>
           <MenuItem
             className="menu1"
             icon={<MenuRoundedIcon />}
@@ -150,6 +160,7 @@ const SidebarMui = () => {
               collapseSidebar();
             }}
           ></MenuItem>
+          </Typography>
           {renderMenuItems()}
         </Menu>
       </Sidebar>
